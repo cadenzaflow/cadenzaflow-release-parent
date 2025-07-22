@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.cadenzaflow</groupId>
@@ -15,10 +19,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- Avoid the message "[WARNING] Using platform encoding (UTF-8 actually) ... also for the failsafe plugin -->
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <!-- we use java 1.7 for our projects -->
     <version.java>1.7</version.java>
     <version.ejb>3.1</version.ejb>
 
@@ -40,14 +42,13 @@
     <plugin.version.javadoc>2.9.1</plugin.version.javadoc>
     <plugin.version.maven-bundle>2.5.3</plugin.version.maven-bundle>
 
-
     <plugin.version.deploy>2.8.2</plugin.version.deploy>
     <plugin.version.assembly>2.4.1</plugin.version.assembly>
     <plugin.version.ejb>2.4</plugin.version.ejb>
     <plugin.version.war>2.4</plugin.version.war>
     <plugin.version.ear>2.9.1</plugin.version.ear>
     <plugin.version.rar>2.4</plugin.version.rar>
-    <plugin.version.gpg>1.4</plugin.version.gpg>
+    <!-- <plugin.version.gpg>1.4</plugin.version.gpg> --> <!-- Kaldırıldı -->
     <plugin.version.release>2.5.3</plugin.version.release>
     <plugin.version.nexus-staging>1.6.8</plugin.version.nexus-staging>
   </properties>
@@ -76,7 +77,6 @@
           <configuration>
             <useDefaultManifestFile>true</useDefaultManifestFile>
             <archive>
-              <!-- explicitly specify manifestFile because otherwise it overrides the generated one from bundle-plugin -->
               <manifest>
                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               </manifest>
@@ -151,7 +151,7 @@
           <configuration>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <useReleaseProfile>false</useReleaseProfile>
-	    <arguments>-Psonatype-oss-release</arguments>
+            <arguments>-Psonatype-oss-release</arguments>
           </configuration>
         </plugin>
         <plugin>
@@ -177,11 +177,13 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${plugin.version.javadoc}</version>
         </plugin>
+        <!--
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
           <version>${plugin.version.gpg}</version>
         </plugin>
+        -->        
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
@@ -314,6 +316,7 @@
               </execution>
             </executions>
           </plugin>
+          <!--
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
@@ -331,6 +334,7 @@
               </execution>
             </executions>
           </plugin>
+          -->
           <plugin>
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -395,3 +399,4 @@
   </issueManagement>
 
 </project>
+
