@@ -18,7 +18,7 @@ Bu rehber, CadenzaFlow Release Parent projesini kendi Nexus repository'nize nas�
 
 ### 1. Settings.xml Konfigürasyonu
 
-`/Users/yusufcoskun/.m2/settings.xml` dosyasında aşağıdaki server konfigürasyonlarının olduğundan emin olun:
+`/Users/../.m2/settings.xml` dosyasında aşağıdaki server konfigürasyonlarının olduğundan emin olun:
 
 ```xml
 <servers>
@@ -56,8 +56,8 @@ mvn release:prepare release:perform \
     -Dtag=1.0.0 \
     -DreleaseVersion=1.0.0 \
     -DdevelopmentVersion=1.0.1-SNAPSHOT \
-    -Darguments="--settings=/Users/yusufcoskun/.m2/settings.xml" \
-    --settings=/Users/yusufcoskun/.m2/settings.xml
+    -Darguments="--settings=/Users/.../.m2/settings.xml" \
+    --settings=/Users/.../.m2/settings.xml
 ```
 
 ## Proje Kullanımı
@@ -91,7 +91,7 @@ Maven Central'a deploy etmek istemiyorsanız:
 ```bash
 mvn release:prepare release:perform \
     -Darguments="-Dskip.central.release=true" \
-    --settings=/Users/yusufcoskun/.m2/settings.xml
+    --settings=/Users/.../.m2/settings.xml
 ```
 
 ## Sorun Giderme
