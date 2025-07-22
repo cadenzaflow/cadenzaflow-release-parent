@@ -7,7 +7,7 @@ echo "CadenzaFlow Release Parent - Release Script"
 echo "============================================"
 
 # Settings.xml dosyasının yolunu belirt
-SETTINGS_XML="/Users/yusufcoskun/.m2/settings.xml"
+SETTINGS_XML="/Users/.../.m2/settings.xml"
 
 # Release parametreleri
 RELEASE_VERSION="1.0.0"
