@@ -50,6 +50,8 @@
     <plugin.version.gpg>1.4</plugin.version.gpg>
     <plugin.version.release>2.5.3</plugin.version.release>
     <plugin.version.nexus-staging>1.6.8</plugin.version.nexus-staging>
+    <!-- Default Sonatype host; override with -Dsonatype.nexusUrl=https://s01.oss.sonatype.org if your account uses s01 -->
+    <sonatype.nexusUrl>https://oss.sonatype.org</sonatype.nexusUrl>
   </properties>
 
   <build>
@@ -163,9 +165,9 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>${plugin.version.nexus-staging}</version>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>0.4.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -193,25 +195,14 @@
 
     <plugins>
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
         <extensions>true</extensions>
-        <executions>
-          <execution>
-            <id>default-deploy</id>
-            <phase>deploy</phase>
-            <goals>
-              <goal>deploy</goal>
-            </goals>
-            <configuration>
-              <detectBuildFailures>true</detectBuildFailures>
-              <serverId>${nexus.staging.deploy.id}</serverId>
-              <nexusUrl>${nexus.staging.deploy.url}</nexusUrl>
-              <skipStaging>true</skipStaging>
-              <skipNexusStagingDeployMojo>${skip.cadenzaflow.release}</skipNexusStagingDeployMojo>
-            </configuration>
-          </execution>
-        </executions>
+        <configuration>
+          <publishingServerId>central</publishingServerId>
+          <tokenAuth>true</tokenAuth>
+          <skipPublishing>${skip.central.release}</skipPublishing>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -332,27 +323,14 @@
             </executions>
           </plugin>
           <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.4.0</version>
             <extensions>true</extensions>
-            <executions>
-              <execution>
-                <id>central-deploy</id>
-                <phase>deploy</phase>
-                <goals>
-                  <goal>deploy</goal>
-                </goals>
-                <configuration>
-                  <detectBuildFailures>true</detectBuildFailures>
-                  <keepStagingRepositoryOnFailure>true</keepStagingRepositoryOnFailure>
-                  <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
-                  <serverId>central</serverId>
-                  <nexusUrl>https://oss.sonatype.org</nexusUrl>
-                  <skipStaging>false</skipStaging>
-                  <skipNexusStagingDeployMojo>${skip.central.release}</skipNexusStagingDeployMojo>
-                </configuration>
-              </execution>
-            </executions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <tokenAuth>true</tokenAuth>
+            </configuration>
           </plugin>
         </plugins>
       </build>
