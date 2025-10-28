@@ -25,12 +25,12 @@
     <skip.cadenzaflow.release>false</skip.cadenzaflow.release>
     <skip.central.release>false</skip.central.release>
     <nexus.snapshot.repository.id>cadenzaflow-nexus-alt</nexus.snapshot.repository.id>
-    <nexus.snapshot.repository>http://18.157.182.187:32265/repository/cadenzaflow-snapshot/</nexus.snapshot.repository>
+    <nexus.snapshot.repository>https://nexus.cadenzaflow.com/repository/cadenzaflow-snapshot/</nexus.snapshot.repository>
     <nexus.release.repository.id>cadenzaflow-nexus-alt</nexus.release.repository.id>
-    <nexus.release.repository>http://18.157.182.187:32265/repository/cadenzaflow-release/</nexus.release.repository>
+    <nexus.release.repository>https://nexus.cadenzaflow.com/repository/cadenzaflow-release/</nexus.release.repository>
 
     <nexus.staging.deploy.id>cadenzaflow-nexus-alt</nexus.staging.deploy.id>
-    <nexus.staging.deploy.url>http://18.157.182.187:32265</nexus.staging.deploy.url>
+    <nexus.staging.deploy.url>https://nexus.cadenzaflow.com</nexus.staging.deploy.url>
     <gpg.useagent>true</gpg.useagent>
 
     <plugin.version.clean>2.6</plugin.version.clean>
@@ -161,7 +161,7 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>${plugin.version.deploy}</version>
           <configuration>
-            <skip>true</skip>
+            <skip>false</skip>
           </configuration>
         </plugin>
         <plugin>
@@ -194,6 +194,8 @@
     </pluginManagement>
 
     <plugins>
+      <!-- Central publishing plugin disabled for Nexus-only deployment -->
+      <!--
       <plugin>
         <groupId>org.sonatype.central</groupId>
         <artifactId>central-publishing-maven-plugin</artifactId>
@@ -204,6 +206,7 @@
           <skipPublishing>${skip.central.release}</skipPublishing>
         </configuration>
       </plugin>
+      -->
     </plugins>
   </build>
 
